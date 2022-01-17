@@ -1,4 +1,5 @@
 function X = denoiseImageDP(Y,blockSize)
+
 [m, n] = size(Y);
 % Pn=ceil(sqrt(K));
 % DCT=zeros(blockSize,Pn);
@@ -7,16 +8,15 @@ function X = denoiseImageDP(Y,blockSize)
 %     if k>0, V=V-mean(V); end
 %     DCT(:,k+1)=V/norm(V);
 % end
-% DCT=kron(DCT,DCT);%%%%%璺烡CT涓殑浠ｇ爜涓?鏍风殑     64*256鐨勭煩闃?  ****param.numIteration
+% DCT=kron(DCT,DCT);
 
-MM = 8; NN = 16;      % 其中MM是DCT字典的行数，NN是DCT字典经过分频采样后的列数
+MM = 8; NN = 16; % 其中MM是DCT字典的行数，NN是DCT字典经过分频采样后的列数
 V = sqrt(2 / MM)*cos((0:MM-1)'*(0:NN-1)*pi/MM/2); 
 V(1,:) = V(1,:) / sqrt(2);
 DCT=kron(V,V);  
 Phi = DCT;
 
-% Phi = rand(64, 256);
-
+% Phi = rand(64, 256
 blkMatrix = im22col(Y,blockSize,1);
 % [tmpR, tmpC] = size(blkMatrix);
 % tmp = zeros(blockSize*blockSize, floor(tmpC/4)+1);
@@ -30,7 +30,7 @@ blkMatrix = im22col(Y,blockSize,1);
 reduceDC = 1;
 if (reduceDC)%%reduceDC=1
     vecOfMeans = mean(blkMatrix);
-    blkMatrix = blkMatrix-ones(size(blkMatrix,1),1)*vecOfMeans;%%%鍑忓幓骞冲潎鏁?  blkMatrix鐭╅樀澶у皬涓猴細64*[锛圢N1-bb+1锛?*(NN2-bb+1)]
+    blkMatrix = blkMatrix-ones(size(blkMatrix,1),1)*vecOfMeans;
 end
 [X , ~ , ~]=bmtl_DP(Phi,blkMatrix);
 X_reshape = Phi * X + ones(size(blkMatrix,1),1) * vecOfMeans; 
