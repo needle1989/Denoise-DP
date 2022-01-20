@@ -74,7 +74,7 @@ end
 PSNRIn = 20*log10(255/sqrt(mean((IMin(:)-IMin0(:)).^2)));
 SSIMIn = ssim(IMin0,IMin);
 %% Implement K means cluster
-expr_cluster(IMin)
+expr_cluster(IMin,bb1)
 %% KSVD to denoise the image
 % [IoutAdaptive1,~] = denoiseImageKSVD(IMin, sigma,K1,bb1);
 % IoutAdaptive1 = denoiseImageDP(IMin,bb1);
