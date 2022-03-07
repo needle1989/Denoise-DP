@@ -1,4 +1,4 @@
-function [X alpha_inv alpha0_inv]=bmtl_DP(Phi,Y,hyper)
+function [X alpha_inv alpha0_inv kappa alpha]=bmtl_DP(Phi,Y,hyper)
 
 %  Bayesian Multi-task Leaning based on DP% 
 %  Implemented by Variational Bayes methods.
@@ -13,9 +13,9 @@ function [X alpha_inv alpha0_inv]=bmtl_DP(Phi,Y,hyper)
 % nd number of ULA; M measurements; N number of grids
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  IMPORTANT References:
-% Y. Qi, D. Liu, D. B. Dunson, and L. Carin, “Multi-task compressive
+% Y. Qi, D. Liu, D. B. Dunson, and L. Carin, ï¿½Multi-task compressive
 % sensing with Dirichlet process priors,? 
-% D. M. Blei and M. I. Jordan, “Variational inference for Dirichlet process
+% D. M. Blei and M. I. Jordan, ï¿½Variational inference for Dirichlet process
 % mixtures,? Bayesian analysis, vol. 1, no. 1, pp. 121-143, 2006.
 if nargin < 2
     error('error!');
