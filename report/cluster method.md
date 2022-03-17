@@ -124,14 +124,30 @@ b为图像的patch x为稀疏系数
 
 计算公式：/hat b = a(at*a)^(-1)atb
 
+32 * 32 image：
 
+![image-20210829150033760](/Users/ember/Denoise-DP/report/8.25.assets/image-20210829150033760.png)
 
 把某个类下的某个图片用该类对应subset重新表示
 
 对于对应多个类的就分别表示，然后按照kappa对应的概率加权表示
 
+将表示结果拉回到原始图像上完成一次更新，再更新字典，重复多次结束迭代
 
+![image-20220312152424029](/Users/ember/Library/Application Support/typora-user-images/image-20220312152424029.png)
 
 todo：
 
-将表示结果拉回到原始图像上完成一次更新，再更新字典，重复多次结束迭代
+* 通过实验验证kmeans算法缺陷：
+
+kmeans可能并不适用于卷积后图像块的聚类
+
+1 增大kmeans聚类个数使其逼近单次DP聚类以验证可行性
+
+2 比较二次聚类后cluster个数 与单次DP结果进行对比
+
+3 取较小图块比较其具体特征（32 * 32）
+
+* 寻找kmeans代替算法以实现相似的效果
+* 通过实验室服务器同步对64图像进行DP实验
+
