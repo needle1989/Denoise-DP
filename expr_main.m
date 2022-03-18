@@ -2,7 +2,7 @@
 clear;
 close all;
 server = 1;
-sub = 1;
+sub = 3;
 if server == 1
     slash = '/';
 elseif server == 0
@@ -74,9 +74,9 @@ end
 PSNRIn = 20*log10(255/sqrt(mean((IMin(:)-IMin0(:)).^2)));
 SSIMIn = ssim(IMin0,IMin);
 %% Implement K means cluster
-IoutAdaptive1 = expr_cluster_test(IMin,bb1);
+% IoutAdaptive1 = expr_cluster_test(IMin,bb1);
 % IoutAdaptive1 = expr_denoise_dp_test(IMin,bb1);
-% IoutAdaptive1 = denoiseImageDP(IMin,bb1);
+IoutAdaptive1 = denoiseImageDP(IMin,bb1);
 PSNROut1 = 20*log10(255/sqrt(mean((IoutAdaptive1(:)-IMin0(:)).^2)));
 SSIMOut1 = ssim(IMin0,IoutAdaptive1);
 %% KSVD to denoise the image
@@ -100,7 +100,7 @@ title(strcat(['Noisy image, ',num2str(PSNRIn),'dB SSIM:',num2str(SSIMIn)]));
 
 subplot(2,2,3); 
 imshow(IoutAdaptive1,[]); 
-title(strcat(['Clean Image by Kmeans+DP, ',num2str(PSNROut1),'dB SSIM:',num2str(SSIMOut1)]));
+title(strcat(['Clean Image by DP, ',num2str(PSNROut1),'dB SSIM:',num2str(SSIMOut1)]));
 % 
 % subplot(2,2,4); 
 % imshow(IoutAdaptive2,[]); 
