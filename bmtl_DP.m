@@ -60,7 +60,7 @@ end
 
 if nargin < 4
     options.tol = 0.005;% 0.005 may be suitable
-    options.iter = 5;
+    options.iter = 10;
 end
 
 %% Initialization
