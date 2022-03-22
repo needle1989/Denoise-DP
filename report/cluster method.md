@@ -136,6 +136,14 @@ b为图像的patch x为稀疏系数
 
 ![image-20220312152424029](/Users/ember/Library/Application Support/typora-user-images/image-20220312152424029.png)
 
+3249 22/3/17 15:47
+
+1 如果你的fig文件中的图像每个像素都有数据，可以通过以下方式获得图像每个点的值，输出data是矩阵，大小是图像像素的行列数
+
+open('figname.fig');
+h=get(gca,'Children');
+data=get(h,'Cdata');
+
 todo：
 
 * 通过实验验证kmeans算法缺陷：

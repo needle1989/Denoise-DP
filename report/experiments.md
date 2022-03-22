@@ -149,3 +149,57 @@ sigma 10
 block 8
 
 ![image-20210918180934889](8.25.assets/image-20210918180934889.png)
+
+### exp 9
+
+DP iter 10
+
+img 64 taken from 512 image house
+
+stride 1
+
+sigma 10
+
+block 8
+
+![image-20220319161945158](/Users/ember/Library/Application Support/typora-user-images/image-20220319161945158.png)
+
+### exp 10
+
+DP iter 10
+
+img 64 lena
+
+stride 1
+
+sigma 10
+
+block 8
+
+![image-20220319162048614](/Users/ember/Library/Application Support/typora-user-images/image-20220319162048614.png)
+
+### exp 11
+
+DP iter 5
+
+img 64 house
+
+stride 1
+
+sigma 10
+
+block 8
+
+![image-20220319162136262](/Users/ember/Library/Application Support/typora-user-images/image-20220319162136262.png)
+
+### exp 12
+
+DP iter 10
+
+img 64 house
+
+stride 1
+
+sigma 10
+
+block 8

@@ -1,7 +1,7 @@
 %% The initialization of the experiment
 clear;
 close all;
-server = 0;
+server = 1;
 if server == 1
     slash = '/';
 elseif server == 0
@@ -77,12 +77,12 @@ end
 PSNRIn = 20*log10(255/sqrt(mean((IMin(:)-IMin0(:)).^2)));
 SSIMIn = ssim(IMin0,IMin);
 %% KSVD to denoise the image
-% [IoutAdaptive1,~] = denoiseImageKSVD(IMin, sigma,K1,bb1);
-IoutAdaptive1 = denoiseImageDP(IMin,bb1);
+[IoutAdaptive1,~] = denoiseImageKSVD(IMin, sigma,K1,bb1);
 PSNROut1 = 20*log10(255/sqrt(mean((IoutAdaptive1(:)-IMin0(:)).^2)));
 SSIMOut1 = ssim(IMin0,IoutAdaptive1);
 %% EBSBL_BO+KSVD to denoise the image
-IoutAdaptive2 = denoiseImageKSVD_DP(IMin, sigma,K1,bb1);
+IoutAdaptive2 = denoiseImageDP(IMin,bb1);
+% IoutAdaptive2 = denoiseImageKSVD_DP(IMin, sigma,K1,bb1);
 PSNROut2 = 20*log10(255/sqrt(mean((IoutAdaptive2(:)-IMin0(:)).^2)));
 SSIMOut2 = ssim(IMin0,IoutAdaptive2);
 %% Paint the final result
@@ -101,7 +101,7 @@ title(strcat(['Clean Image by KSVD, ',num2str(PSNROut1),'dB SSIM:',num2str(SSIMO
 
 subplot(2,2,4); 
 imshow(IoutAdaptive2,[]); 
-title(strcat(['Clean Image by DP+KSVD, ',num2str(PSNROut2),'dB SSIM:',num2str(SSIMOut2)]));
+title(strcat(['Clean Image by DP, ',num2str(PSNROut2),'dB SSIM:',num2str(SSIMOut2)]));
 %% Download the result of the experiment
 time = datestr(datetime,'yyyymmddHHMMSS');
 file_name = [time,'-',picture,'-',num2str(sigma)];
