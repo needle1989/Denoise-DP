@@ -13,7 +13,7 @@ RR=4; % redundancy factor  ��������
 K1=RR*bb1^2; % number of atoms in the dictionary
 K2=RR*bb2^2; % number of atoms in the dictionary
 sigma =10;
-p = 13;
+p = 3;
 MM = 64; % sensor measurement number
 %% Get the original image
 if p == 1

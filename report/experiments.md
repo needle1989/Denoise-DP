@@ -203,3 +203,67 @@ stride 1
 sigma 10
 
 block 8
+
+### exp 13
+
+DP iter 10
+
+img 64 livingroom block
+
+stride 1
+
+sigma 10
+
+block 8
+
+### exp 14
+
+DP iter 20
+
+img 64 pepper
+
+stride 2
+
+sigma 10
+
+block 8
+
+### exp 14-2
+
+DP iter 10
+
+img 64 pepper
+
+stride 1
+
+sigma 10
+
+block 8
+
+### exp 15
+
+DP iter 10
+
+img 64 house b2
+
+stride 2
+
+sigma 10
+
+block 8
+
+### exp 16
+
+DP iter 10
+
+img 64 livingroom b2
+
+stride 2
+
+sigma 10
+
+block 8
+
+h=findobj(gcf,'type','image');
+
+img=get(h,'CData');

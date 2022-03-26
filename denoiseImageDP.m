@@ -17,7 +17,7 @@ DCT=kron(V,V);
 Phi = DCT;
 
 % Phi = rand(64, 256
-blkMatrix = im22col(Y,blockSize,1);
+blkMatrix = im22col(Y,blockSize,2);
 % [tmpR, tmpC] = size(blkMatrix);
 % tmp = zeros(blockSize*blockSize, floor(tmpC/4)+1);
 % n = 1;
@@ -34,7 +34,7 @@ if (reduceDC)%%reduceDC=1
 end
 [X , ~ , ~]=bmtl_DP(Phi,blkMatrix);
 X_reshape = Phi * X + ones(size(blkMatrix,1),1) * vecOfMeans; 
-result = col22im(X_reshape, m, 1);
+result = col22im(X_reshape, m, 2);
 X = result;
 end
 % [M, N] = size(X);
