@@ -1,8 +1,8 @@
 %% The initialization of the experiment
 clear;
 close all;
-server = 1;
-sub = 3;
+server = 0;
+sub = 13;
 if server == 1
     slash = '/';
 elseif server == 0
@@ -40,6 +40,8 @@ elseif sub == 11
     picture = 'livingroom512.png';
 elseif sub == 12
     picture = 'jetplane512.png';
+elseif sub == 13
+    picture = '\dataset\livingroom_b2.png';
 end
 [IMin0,~]=imread(['img',slash,picture]);
 IMin0 = imresize(IMin0,[MM MM]);
@@ -76,18 +78,19 @@ SSIMIn = ssim(IMin0,IMin);
 %% Implement K means cluster
 % IoutAdaptive1 = expr_cluster_test(IMin,bb1);
 % IoutAdaptive1 = expr_denoise_dp_test(IMin,bb1);
-IoutAdaptive1 = denoiseImageDP(IMin,bb1);
-PSNROut1 = 20*log10(255/sqrt(mean((IoutAdaptive1(:)-IMin0(:)).^2)));
-SSIMOut1 = ssim(IMin0,IoutAdaptive1);
-%% KSVD to denoise the image
-% [IoutAdaptive1,~] = denoiseImageKSVD(IMin, sigma,K1,bb1);
 % IoutAdaptive1 = denoiseImageDP(IMin,bb1);
 % PSNROut1 = 20*log10(255/sqrt(mean((IoutAdaptive1(:)-IMin0(:)).^2)));
 % SSIMOut1 = ssim(IMin0,IoutAdaptive1);
+%% KSVD to denoise the image
+[IoutAdaptive1,~] = denoiseImageKSVD(IMin, sigma,K1,bb1);
+% IoutAdaptive1 = denoiseImageDP(IMin,bb1);
+PSNROut1 = 20*log10(255/sqrt(mean((IoutAdaptive1(:)-IMin0(:)).^2)));
+SSIMOut1 = ssim(IMin0,IoutAdaptive1);
 %% EBSBL_BO+KSVD to denoise the image
+IoutAdaptive2 = denoiseImageDP(IMin,bb1);
 % IoutAdaptive2 = denoiseImageKSVD_DP(IMin, sigma,K1,bb1);
-% PSNROut2 = 20*log10(255/sqrt(mean((IoutAdaptive2(:)-IMin0(:)).^2)));
-% SSIMOut2 = ssim(IMin0,IoutAdaptive2);
+PSNROut2 = 20*log10(255/sqrt(mean((IoutAdaptive2(:)-IMin0(:)).^2)));
+SSIMOut2 = ssim(IMin0,IoutAdaptive2);
 %% Paint the final result
 figure;
 subplot(2,2,1); 
@@ -100,8 +103,8 @@ title(strcat(['Noisy image, ',num2str(PSNRIn),'dB SSIM:',num2str(SSIMIn)]));
 
 subplot(2,2,3); 
 imshow(IoutAdaptive1,[]); 
-title(strcat(['Clean Image by DP, ',num2str(PSNROut1),'dB SSIM:',num2str(SSIMOut1)]));
+title(strcat(['Clean Image by KSVD, ',num2str(PSNROut1),'dB SSIM:',num2str(SSIMOut1)]));
 % 
-% subplot(2,2,4); 
-% imshow(IoutAdaptive2,[]); 
-% title(strcat(['Clean Image by DP+KSVD, ',num2str(PSNROut2),'dB SSIM:',num2str(SSIMOut2)]));
+subplot(2,2,4); 
+imshow(IoutAdaptive2,[]); 
+title(strcat(['Clean Image by DP, ',num2str(PSNROut2),'dB SSIM:',num2str(SSIMOut2)]));
